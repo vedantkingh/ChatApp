@@ -13,23 +13,27 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final ValueNotifier<int> pageIndex = ValueNotifier(0);
+
   final pages = const [
     MessagesPage(),
     NotificationsPage(),
     CallsPage(),
     ContactsPage(),
   ];
-  var index = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: pages[index],
+      body: ValueListenableBuilder(
+        valueListenable: pageIndex,
+        builder: (BuildContext context, int value, _) {
+          return pages[value];
+        },
+      ),
       bottomNavigationBar: _BottomNavigationBar(
-        onItemSelected: (i) {
-          setState(() {
-            index = i;
-          });
+        onItemSelected: (index) {
+          pageIndex.value = index;
         },
       ),
     );
@@ -98,6 +102,7 @@ class _NavigationBarItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: () {
         onTap(index);
       },
