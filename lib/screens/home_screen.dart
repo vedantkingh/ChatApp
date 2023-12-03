@@ -36,24 +36,35 @@ class _BottomNavigationBar extends StatelessWidget {
       bottom: true,
       child: Container(
         color: Colors.red,
-        child: const Row(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             _NavigationBarItem(
+              index: 0,
               label: 'Messages',
               icon: CupertinoIcons.bubble_left_bubble_right_fill,
             ),
             _NavigationBarItem(
+              index: 1,
               label: 'Notifications',
               icon: CupertinoIcons.bell_solid,
+              onTap: (index) {
+                print(index);
+              },
             ),
             _NavigationBarItem(
+              index: 2,
               label: 'Calls',
               icon: CupertinoIcons.phone_fill,
+              onTap: () {},
             ),
             _NavigationBarItem(
+              index: 3,
               label: 'Contacts',
               icon: CupertinoIcons.person_2_fill,
+              onTap: (index) {
+                print(index);
+              },
             ),
           ],
         ),
@@ -63,30 +74,41 @@ class _BottomNavigationBar extends StatelessWidget {
 }
 
 class _NavigationBarItem extends StatelessWidget {
-  const _NavigationBarItem({required this.label, required this.icon});
+  const _NavigationBarItem(
+      {required this.index,
+      required this.label,
+      required this.icon,
+      required this.onTap});
 
+  final int index;
   final String label;
   final IconData icon;
+  final ValueChanged<int> onTap;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 70,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(
-            icon,
-            size: 20,
-          ),
-          SizedBox(
-            height: 8,
-          ),
-          Text(
-            label,
-            style: TextStyle(fontSize: 11),
-          ),
-        ],
+    return GestureDetector(
+      onTap: () {
+        onTap(index);
+      },
+      child: SizedBox(
+        height: 70,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              icon,
+              size: 20,
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            Text(
+              label,
+              style: TextStyle(fontSize: 11),
+            ),
+          ],
+        ),
       ),
     );
   }
