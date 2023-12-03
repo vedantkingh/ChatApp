@@ -5,29 +5,43 @@ import 'package:chat_app/pages/notifications_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   final pages = const [
     MessagesPage(),
     NotificationsPage(),
     CallsPage(),
     ContactsPage(),
   ];
+  var index = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: pages[2],
-      bottomNavigationBar: _BottomNavigationBar(),
+      body: pages[index],
+      bottomNavigationBar: _BottomNavigationBar(
+        onItemSelected: (i) {
+          setState(() {
+            index = i;
+          });
+        },
+      ),
     );
   }
 }
 
 class _BottomNavigationBar extends StatelessWidget {
   const _BottomNavigationBar({
-    super.key,
+    required this.onItemSelected,
   });
+
+  final ValueChanged<int> onItemSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +49,6 @@ class _BottomNavigationBar extends StatelessWidget {
       top: false,
       bottom: true,
       child: Container(
-        color: Colors.red,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -43,28 +56,25 @@ class _BottomNavigationBar extends StatelessWidget {
               index: 0,
               label: 'Messages',
               icon: CupertinoIcons.bubble_left_bubble_right_fill,
+              onTap: onItemSelected,
             ),
             _NavigationBarItem(
               index: 1,
               label: 'Notifications',
               icon: CupertinoIcons.bell_solid,
-              onTap: (index) {
-                print(index);
-              },
+              onTap: onItemSelected,
             ),
             _NavigationBarItem(
               index: 2,
               label: 'Calls',
               icon: CupertinoIcons.phone_fill,
-              onTap: () {},
+              onTap: onItemSelected,
             ),
             _NavigationBarItem(
               index: 3,
               label: 'Contacts',
               icon: CupertinoIcons.person_2_fill,
-              onTap: (index) {
-                print(index);
-              },
+              onTap: onItemSelected,
             ),
           ],
         ),
