@@ -15,6 +15,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final ValueNotifier<int> pageIndex = ValueNotifier(0);
+  final ValueNotifier<String> title = ValueNotifier('Messages');
 
   final pages = const [
     MessagesPage(),
@@ -30,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text(
-          'title',
+          title.value,
           style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 16,
