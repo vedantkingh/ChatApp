@@ -30,12 +30,17 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: Text(
-          title.value,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
-          ),
+        title: ValueListenableBuilder(
+          valueListenable: title,
+          builder: (BuildContext context, String value, _) {
+            return Text(
+              title.value,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+              ),
+            );
+          },
         ),
       ),
       body: ValueListenableBuilder(
