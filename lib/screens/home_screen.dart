@@ -2,6 +2,7 @@ import 'package:chat_app/pages/calls_page.dart';
 import 'package:chat_app/pages/contacts_page.dart';
 import 'package:chat_app/pages/messages_page.dart';
 import 'package:chat_app/pages/notifications_page.dart';
+import 'package:chat_app/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -135,13 +136,15 @@ class _NavigationBarItem extends StatelessWidget {
             Icon(
               icon,
               size: 20,
+              color: isSelected ? AppColors.secondary : null,
             ),
             SizedBox(
               height: 8,
             ),
             Text(
               label,
-              style: TextStyle(fontSize: 11),
+              style: TextStyle(
+                  fontSize: 11, color: isSelected ? AppColors.secondary : null),
             ),
           ],
         ),
