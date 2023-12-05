@@ -24,6 +24,18 @@ class _HomeScreenState extends State<HomeScreen> {
     ContactsPage(),
   ];
 
+  final pageTitles = const [
+    'Messages',
+    'Notifications',
+    'Calls',
+    'Contacts',
+  ];
+
+  void onNavigationItemSelected(index) {
+    title.value = pageTitles[index];
+    pageIndex.value = index;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
           valueListenable: title,
           builder: (BuildContext context, String value, _) {
             return Text(
-              title.value,
+              value,
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
@@ -50,9 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
         },
       ),
       bottomNavigationBar: _BottomNavigationBar(
-        onItemSelected: (index) {
-          pageIndex.value = index;
-        },
+        onItemSelected: onNavigationItemSelected,
       ),
     );
   }
