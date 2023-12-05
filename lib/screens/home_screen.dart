@@ -75,24 +75,28 @@ class _BottomNavigationBarState extends State<_BottomNavigationBar> {
               index: 0,
               label: 'Messages',
               icon: CupertinoIcons.bubble_left_bubble_right_fill,
+              isSelected: (selectedIndex == 0),
               onTap: handleItemSelected,
             ),
             _NavigationBarItem(
               index: 1,
               label: 'Notifications',
               icon: CupertinoIcons.bell_solid,
+              isSelected: (selectedIndex == 1),
               onTap: handleItemSelected,
             ),
             _NavigationBarItem(
               index: 2,
               label: 'Calls',
               icon: CupertinoIcons.phone_fill,
+              isSelected: (selectedIndex == 2),
               onTap: handleItemSelected,
             ),
             _NavigationBarItem(
               index: 3,
               label: 'Contacts',
               icon: CupertinoIcons.person_2_fill,
+              isSelected: (selectedIndex == 3),
               onTap: handleItemSelected,
             ),
           ],
@@ -107,11 +111,13 @@ class _NavigationBarItem extends StatelessWidget {
       {required this.index,
       required this.label,
       required this.icon,
+      this.isSelected = false,
       required this.onTap});
 
   final int index;
   final String label;
   final IconData icon;
+  final bool isSelected;
   final ValueChanged<int> onTap;
 
   @override
