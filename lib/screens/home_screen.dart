@@ -40,12 +40,27 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class _BottomNavigationBar extends StatelessWidget {
+class _BottomNavigationBar extends StatefulWidget {
   const _BottomNavigationBar({
     required this.onItemSelected,
   });
 
   final ValueChanged<int> onItemSelected;
+
+  @override
+  State<_BottomNavigationBar> createState() => _BottomNavigationBarState();
+}
+
+class _BottomNavigationBarState extends State<_BottomNavigationBar> {
+  var selectedIndex = 0;
+
+  void handleItemSelected(int index) {
+    setState(() {
+      selectedIndex = index;
+    });
+
+    widget.onItemSelected;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,25 +75,25 @@ class _BottomNavigationBar extends StatelessWidget {
               index: 0,
               label: 'Messages',
               icon: CupertinoIcons.bubble_left_bubble_right_fill,
-              onTap: onItemSelected,
+              onTap: handleItemSelected,
             ),
             _NavigationBarItem(
               index: 1,
               label: 'Notifications',
               icon: CupertinoIcons.bell_solid,
-              onTap: onItemSelected,
+              onTap: handleItemSelected,
             ),
             _NavigationBarItem(
               index: 2,
               label: 'Calls',
               icon: CupertinoIcons.phone_fill,
-              onTap: onItemSelected,
+              onTap: handleItemSelected,
             ),
             _NavigationBarItem(
               index: 3,
               label: 'Contacts',
               icon: CupertinoIcons.person_2_fill,
-              onTap: onItemSelected,
+              onTap: handleItemSelected,
             ),
           ],
         ),
