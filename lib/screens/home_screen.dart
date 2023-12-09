@@ -1,3 +1,4 @@
+import 'package:chat_app/helpers.dart';
 import 'package:chat_app/pages/calls_page.dart';
 import 'package:chat_app/pages/contacts_page.dart';
 import 'package:chat_app/pages/messages_page.dart';
@@ -6,6 +7,7 @@ import 'package:chat_app/theme.dart';
 import 'package:chat_app/widgets/avatar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:chat_app/helpers.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -55,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
             );
           },
         ),
-        actions: [Avatar.small(url: 'url')],
+        actions: [Avatar.small(url: Helpers.randomPictureUrl())],
       ),
       body: ValueListenableBuilder(
         valueListenable: pageIndex,
