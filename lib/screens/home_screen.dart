@@ -57,7 +57,12 @@ class _HomeScreenState extends State<HomeScreen> {
             );
           },
         ),
-        actions: [Avatar.small(url: Helpers.randomPictureUrl())],
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 24.0),
+            child: Avatar.small(url: Helpers.randomPictureUrl()),
+          )
+        ],
       ),
       body: ValueListenableBuilder(
         valueListenable: pageIndex,
