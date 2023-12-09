@@ -3,6 +3,7 @@ import 'package:chat_app/pages/contacts_page.dart';
 import 'package:chat_app/pages/messages_page.dart';
 import 'package:chat_app/pages/notifications_page.dart';
 import 'package:chat_app/theme.dart';
+import 'package:chat_app/widgets/avatar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -54,6 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
             );
           },
         ),
+        actions: [Avatar.small(url: 'url')],
       ),
       body: ValueListenableBuilder(
         valueListenable: pageIndex,
