@@ -7,7 +7,6 @@ import 'package:chat_app/theme.dart';
 import 'package:chat_app/widgets/avatar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:chat_app/helpers.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
